@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Fit-TripClient"
+rootProject.name = "Fit Trip"
 include ':app'
