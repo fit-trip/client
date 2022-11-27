@@ -1,9 +1,9 @@
-package com.example.fit_tripclient
+package com.example.fittrip
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.fit_tripclient.databinding.ActivityMainBinding
+import com.example.fittrip.databinding.ActivityMainBinding
 
 class ActivityMain : AppCompatActivity() {
 
@@ -14,14 +14,14 @@ class ActivityMain : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(fragment_main())
+        replaceFragment(MainFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.fragment_main_navigationBottomView_home -> replaceFragment(fragment_main())
-                R.id.fragment_main_navigationBottomView_my_schedule -> replaceFragment(fragment_mySchedule())
-                R.id.fragment_main_navigationBottomView_share -> replaceFragment(frgement_share())
-                R.id.fragment_main_navigationBottomView_my_page -> replaceFragment(fragment_my_page())
+                R.id.fragment_main_navigationBottomView_home -> replaceFragment(MainFragment())
+                R.id.fragment_main_navigationBottomView_my_schedule -> replaceFragment(MyScheduleFragment())
+                R.id.fragment_main_navigationBottomView_share -> replaceFragment(ShareFragment())
+                R.id.fragment_main_navigationBottomView_my_page -> replaceFragment(MyPageFragment())
 
                 else -> {
 

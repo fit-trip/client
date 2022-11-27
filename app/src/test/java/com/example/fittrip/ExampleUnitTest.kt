@@ -1,4 +1,4 @@
-package com.example.fit_tripclient
+package com.example.fittrip
 
 import org.junit.Test
 

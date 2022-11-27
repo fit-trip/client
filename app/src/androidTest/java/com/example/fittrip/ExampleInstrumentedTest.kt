@@ -1,4 +1,4 @@
-package com.example.fit_tripclient
+package com.example.fittrip
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
