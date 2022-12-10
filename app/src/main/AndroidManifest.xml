@@ -18,8 +18,13 @@
         android:theme="@style/Theme.FitTripClient"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
-            android:name=".map.activity.SelectLocationActivity"
+            android:name=".map.activity.SelectLocationActivity">
+        </activity>
+
+        <activity
+            android:name="com.example.fittrip.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,14 +32,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.example.fittrip.ActivityMain"
             android:exported="true">
         </activity>
-        <activity
-            android:name="com.example.fittrip.LoginActivity"
-            android:exported="true">
-        </activity>
+
         <activity
             android:name="com.example.fittrip.RegisterActivity"
             android:exported="true">
@@ -44,5 +47,4 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="653c3aa652cc51ea76ffda89da85cc13"/>
     </application>
-
 </manifest>
