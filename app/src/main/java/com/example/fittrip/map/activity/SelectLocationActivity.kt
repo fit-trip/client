@@ -14,6 +14,7 @@ import com.example.fittrip.databinding.ActivitySelectLocationBinding
 import com.example.fittrip.map.MapViewCommander
 import com.example.fittrip.map.adapter.SelectedLocationAdapter
 import com.example.fittrip.map.dto.LocationDto
+import com.example.fittrip.schedule.activity.MyScheduleActivity
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -46,11 +47,10 @@ class SelectLocationActivity : AppCompatActivity(),
 
 //        MapView 초기화 및 Commander 주입
         setupMapViewForMapViewCommander()
-        intent?.let {
-            val lat = it.getDoubleExtra("lat", 37.565526041255616)
-            val lng = it.getDoubleExtra("lng", 126.97495136198495)
-            mapViewCommander.setMapPosition(lat, lng)
-        }
+
+        val lat = intent?.getDoubleExtra("lat", 37.5659771227203)
+        val lng = intent?.getDoubleExtra("lng", 126.97787149449015)
+        mapViewCommander.setMapPosition(lat!!, lng!!)
     }
 
     private fun setupMapViewForMapViewCommander() {
@@ -64,7 +64,7 @@ class SelectLocationActivity : AppCompatActivity(),
     }
 
     private fun setAdaptorOnRecyclerView(adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
-        val recyclerView = binding.mapScheduleSelectedPlaceRecyclerView
+        val recyclerView = binding.selectLocationRecyclerView
         recyclerView.adapter = adapter
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
@@ -84,7 +84,10 @@ class SelectLocationActivity : AppCompatActivity(),
                     selectedPlace.x
                     selectedPlace.y
                 }
-//                TODO("일정 생성 호출, 내 일정 뷰로 이동")
+
+                val intent = Intent(this, MyScheduleActivity::class.java)
+                intent.putExtra("selectedPlaces", selectedPlaces.toTypedArray())
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)

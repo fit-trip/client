@@ -19,12 +19,12 @@ class SelectedLocationAdapter(val datas: MutableList<LocationDto>): RecyclerView
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as SelectedLocationViewHolder).binding
-        binding.itemData.text = datas[position].name
-        binding.itemRoot.setOnClickListener {
+        binding.itemSelectLocationData.text = datas[position].name
+        binding.itemSelectLocationRoot.setOnClickListener {
             Log.d("psh", "${position}")
         }
 
-        binding.itemBtn.setOnClickListener {
+        binding.itemSelectLocationBtn.setOnClickListener {
             removeSelectedPlace(position)
         }
     }
