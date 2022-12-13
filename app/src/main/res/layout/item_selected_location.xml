@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/itemRoot"
+    android:id="@+id/item_select_location_root"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
     <TextView
-        android:id="@+id/itemData"
+        android:id="@+id/item_select_location_data"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/itemBtn"
+        android:id="@+id/item_select_location_btn"
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_marginRight="20dp"
