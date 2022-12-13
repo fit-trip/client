@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.fittrip.databinding.ActivityMainBinding
+import com.example.fittrip.schedule.fragment.MyScheduleFragment
 
 class ActivityMain : AppCompatActivity() {
 
@@ -16,17 +17,22 @@ class ActivityMain : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(MainFragment())
 
+        if (intent.getParcelableArrayExtra("selectedPlaces") != null) {
+            val myScheduleFragment = MyScheduleFragment()
+            myScheduleFragment.arguments = intent.extras
+            binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_home).isChecked = false
+            binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_my_schedule).isChecked = true
+            replaceFragment(myScheduleFragment)
+        }
+
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.fragment_main_navigationBottomView_home -> replaceFragment(MainFragment())
                 R.id.fragment_main_navigationBottomView_my_schedule -> replaceFragment(MyScheduleFragment())
                 R.id.fragment_main_navigationBottomView_share -> replaceFragment(ShareFragment())
                 R.id.fragment_main_navigationBottomView_my_page -> replaceFragment(MyPageFragment())
-
                 else -> {
-
                 }
-
             }
             true
         }

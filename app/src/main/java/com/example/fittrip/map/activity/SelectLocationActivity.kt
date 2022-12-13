@@ -9,12 +9,12 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fittrip.ActivityMain
 import com.example.fittrip.R
 import com.example.fittrip.databinding.ActivitySelectLocationBinding
 import com.example.fittrip.map.MapViewCommander
 import com.example.fittrip.map.adapter.SelectedLocationAdapter
 import com.example.fittrip.map.dto.LocationDto
-import com.example.fittrip.schedule.activity.MyScheduleActivity
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -79,15 +79,14 @@ class SelectLocationActivity : AppCompatActivity(),
         when(item.itemId) {
             R.id.create_schedule -> {
                 Toast.makeText(this, "일정 생성", Toast.LENGTH_SHORT).show()
-                for (selectedPlace in selectedPlaces) {
-                    selectedPlace.name
-                    selectedPlace.x
-                    selectedPlace.y
-                }
 
-                val intent = Intent(this, MyScheduleActivity::class.java)
+                val intent = Intent(this, ActivityMain::class.java)
                 intent.putExtra("selectedPlaces", selectedPlaces.toTypedArray())
                 startActivity(intent)
+
+//                val intent = Intent(this, MyScheduleActivity::class.java)
+//                intent.putExtra("selectedPlaces", selectedPlaces.toTypedArray())
+//                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -97,8 +96,8 @@ class SelectLocationActivity : AppCompatActivity(),
      * POIItemEventListener
      */
     override fun onPOIItemSelected(p0: MapView?, p1: MapPOIItem?) {
-        val latitude = p1?.mapPoint?.mapPointGeoCoord?.latitude
-        val longitude = p1?.mapPoint?.mapPointGeoCoord?.longitude
+        val latitude = p1?.mapPoint?.mapPointGeoCoord?.longitude
+        val longitude = p1?.mapPoint?.mapPointGeoCoord?.latitude
         val name = p1?.itemName
 
         val location = LocationDto(latitude, longitude, name)

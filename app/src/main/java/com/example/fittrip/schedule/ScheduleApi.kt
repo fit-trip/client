@@ -34,5 +34,6 @@ data class MyScheduleResponse(
 )
 
 data class CreateScheduleRequest(
-    var locations: List<LocationDto>
+    var locations: List<LocationDto>,
+    var name: String = "새로운 일정"
 )
