@@ -21,7 +21,30 @@ interface ScheduleApi {
         @Header("Authorization") token: String,
         @Body req: CreateScheduleRequest
     ): retrofit2.Call<Unit>
+
+    // ### Schedule Detail ###
+
+    @GET("/api/v1/route")
+    fun getRouteInfoByScheduleId(
+        @Header("Authorization") token: String,
+        scheduleId: Int
+    ): retrofit2.Call<MutableList<RouteInfoResponseDto>>
 }
+
+data class RouteInfoResponseDto(
+    val durations: RouteInfoPerDurationDto,
+    val fare: RouteInfoPerFareDto
+)
+
+data class RouteInfoPerDurationDto(
+    val locations: List<LocationDto>,
+    val durationForNextPlace: List<Int>
+)
+
+data class RouteInfoPerFareDto(
+    val locations: List<LocationDto>,
+    val fareForNextPlace: List<Int>
+)
 
 data class MyScheduleResponse(
     var id: Int,

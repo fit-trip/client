@@ -9,12 +9,13 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fittrip.TokenManager
 import com.example.fittrip.databinding.ItemMyScheduleBinding
-import com.example.fittrip.map.activity.SelectLocationActivity
 import com.example.fittrip.map.dto.LocationDto
 import com.example.fittrip.schedule.CreateScheduleRequest
 import com.example.fittrip.schedule.MyScheduleResponse
 import com.example.fittrip.schedule.ScheduleApi
+import com.example.fittrip.schedule.activity.DetailScheduleActivity
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -34,11 +35,10 @@ class MyScheduleAdapter(val datas: MutableList<MyScheduleResponse>): RecyclerVie
         binding = (holder as MyScheduleViewHolder).binding
 
         binding.itemScheduleNameRoot.setOnClickListener {
-//            Intent(it.context, SelectLocationActivity::class.java).apply {
-//                putExtra("lat", 37.565526041255616)
-//                putExtra("lng", 126.97495136198495)
-//                it.context.startActivity(this)
-//            }
+            Intent(it.context, DetailScheduleActivity::class.java).apply {
+                putExtra("scheduleId", datas[position].id)
+                it.context.startActivity(this)
+            }
         }
 
         if (!datas[position].isProgressed) {
@@ -63,13 +63,10 @@ class MyScheduleAdapter(val datas: MutableList<MyScheduleResponse>): RecyclerVie
 
     override fun getItemCount(): Int = datas.size;
 
-    val token =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtYXBwIiwiaWQiOiJ0ZXN0IiwiZXhwIjoxNjcwOTQ0OTE0LCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNjcwOTM3NzE0fQ.wgIcSzTd6hc34kFPkvHiZxAQiaJ0BzCdwZisJQT8OHk"
-
     fun refreshMySchedule(complete: Boolean = true) {
         val retrofit = createDefaultRetrofit(ScheduleApi.BASE_URL)
         val api = retrofit.create(ScheduleApi::class.java)
-        val call = api.getMySchedule(token)
+        val call = api.getMySchedule(TokenManager.token)
 
         call.enqueue(object : retrofit2.Callback<MutableList<MyScheduleResponse>> {
             @RequiresApi(Build.VERSION_CODES.O)
@@ -90,6 +87,7 @@ class MyScheduleAdapter(val datas: MutableList<MyScheduleResponse>): RecyclerVie
                 }
 //                 TODO("가끔 화면에 로딩 중 표시가 안 뜨는 경우가 있음")
                 notifyDataSetChanged()
+                Thread.sleep(200)
             }
 
             private fun inCompletedSchedule() = MyScheduleResponse(
@@ -118,12 +116,11 @@ class MyScheduleAdapter(val datas: MutableList<MyScheduleResponse>): RecyclerVie
         val retrofit = createDefaultRetrofit(ScheduleApi.BASE_URL)
         val api = retrofit.create(ScheduleApi::class.java)
         val scheduleRequest = CreateScheduleRequest(selectedPlaces.map { it as LocationDto })
-        val call = api.createSchedule(token, scheduleRequest)
+        val call = api.createSchedule(TokenManager.token, scheduleRequest)
 
 
         call.enqueue(object : retrofit2.Callback<Unit>{
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                Thread.sleep(2000)
                 refreshMySchedule()
             }
 

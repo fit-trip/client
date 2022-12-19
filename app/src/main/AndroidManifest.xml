@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.fittrip">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<!--    <uses-permission android:name="android.permission.INTERNET" />-->
+<!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+<!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
 
     <application
         android:allowBackup="true"
@@ -17,34 +17,59 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitTripClient"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="33">
+<!--        <activity-->
+<!--            android:name=".schedule.activity.DetailScheduleActivity"-->
+<!--            android:exported="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--&lt;!&ndash;                        <intent-filter>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
 
-        <activity
-            android:name=".map.activity.SelectLocationActivity">
-        </activity>
+<!--&lt;!&ndash;                            <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
+<!--&lt;!&ndash;                        </intent-filter>&ndash;&gt;-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".map.activity.SelectLocationActivity"-->
+<!--            android:exported="true">-->
+<!--&lt;!&ndash;            <intent-filter>&ndash;&gt;-->
+<!--&lt;!&ndash;                <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
 
+<!--&lt;!&ndash;                <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
+<!--&lt;!&ndash;            </intent-filter>&ndash;&gt;-->
+<!--        </activity>-->
         <activity
-            android:name="com.example.fittrip.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
-        <activity
-            android:name="com.example.fittrip.ActivityMain"
-            android:exported="true">
-        </activity>
 
-        <activity
-            android:name="com.example.fittrip.RegisterActivity"
-            android:exported="true">
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
+<!--        <activity-->
+<!--            android:name="com.example.fittrip.ActivityMain"-->
+<!--            android:exported="true">-->
+
+<!--&lt;!&ndash;             <intent-filter>&ndash;&gt;-->
+<!--&lt;!&ndash;             <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;             <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
+<!--&lt;!&ndash;             </intent-filter>&ndash;&gt;-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name="com.example.fittrip.RegisterActivity"-->
+<!--            android:exported="true">-->
+<!--        </activity>-->
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="653c3aa652cc51ea76ffda89da85cc13"/>
+            android:value="653c3aa652cc51ea76ffda89da85cc13" />
     </application>
+
 </manifest>
