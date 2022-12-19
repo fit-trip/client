@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,8 +9,10 @@
     tools:context=".MainFragment">
 
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:layout_width="match_parent"
@@ -18,49 +21,58 @@
             android:src="@drawable/main_back_ground"></ImageView>
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right"
+            android:layout_height="274dp"
             android:layout_gravity="center"
+            android:gravity="right"
             android:orientation="vertical">
 
+
             <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-
+                android:fontFamily="@font/lobster"
                 android:text="Fit-Trip"
                 android:textColor="@color/skyBlue"
-                android:fontFamily="@font/lobster"
-                android:textSize="90dp">
-
-            </TextView>
+                android:textSize="90dp"></TextView>
 
             <TextView
+                android:id="@+id/inputTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="간편한 여행 플래너"
                 android:textSize="20dp"
-                android:text="간편한 여행 플래너">
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:layout_editor_absoluteX="100dp">
 
             </TextView>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/createScheduleBtn"
+
+            <EditText
+                android:id="@+id/InputEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_round"
-                android:text=" 여행 일정 만들기"
-                android:layout_marginTop="150dp"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"
-                android:drawableLeft="@drawable/main_pencil"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:background="@drawable/input_title"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="여행 일정 만들러가기"
+                android:inputType="text"
+                android:minHeight="40dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/black"
 
-            </androidx.appcompat.widget.AppCompatButton>
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="24dp" />
 
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </FrameLayout>
 
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
