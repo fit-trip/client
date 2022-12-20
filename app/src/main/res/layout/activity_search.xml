@@ -12,7 +12,7 @@
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="어디로 갈까요?" />
+        app:title="장소 검색" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"

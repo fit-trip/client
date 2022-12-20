@@ -22,7 +22,7 @@
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
             android:text="User 님의 마이페이지"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@color/skyBlue"
             android:textSize="24dp"/>
 
