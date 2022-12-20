@@ -50,6 +50,7 @@
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/lobster"
                     android:text="Fit-Trip"
+                    android:letterSpacing="0.07"
                     android:textColor="#E8295D90"
                     android:textSize="90dp"/>
             </LinearLayout>
