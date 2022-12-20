@@ -1,12 +1,3 @@
-/**
- *
- */
-/**
- * @author aquilegia
- *
- * The code based on hyosang(http://hyosang.kr/tc/96) and aero's blog ((http://aero.sarang.net/map/analysis.html)
- * License:  LGPL : http://www.gnu.org/copyleft/lesser.html
- */
 object GeoTrans {
     const val GEO = 0
     const val KATEC = 1
@@ -35,9 +26,9 @@ object GeoTrans {
         m_arFalseEasting[GEO] = 0.0
         m_arMajor[GEO] = 6378137.0
         m_arMinor[GEO] = 6356752.3142
-        m_arScaleFactor[KATEC] = 0.9996 //0.9999;
-        m_arLonCenter[KATEC] = 2.22529479629277 // 127.5
-        //m_arLonCenter[KATEC] = 2.23402144255274; // 128
+        m_arScaleFactor[KATEC] = 0.9999 //0.9996;
+        //m_arLonCenter[KATEC] = 2.22529479629277; // 127.5
+        m_arLonCenter[KATEC] = 2.23402144255274 // 128
         m_arLatCenter[KATEC] = 0.663225115757845
         m_arFalseNorthing[KATEC] = 600000.0
         m_arFalseEasting[KATEC] = 400000.0
@@ -186,7 +177,7 @@ object GeoTrans {
         val x: Double
         val y: Double
         transform(GEO, dsttype, in_pt)
-        val delta_lon = in_pt.x - m_arLonCenter[dsttype]
+        val delta_lon: Double = in_pt.x - m_arLonCenter[dsttype]
         val sin_phi = Math.sin(in_pt.y)
         val cos_phi = Math.cos(in_pt.y)
         if (m_Ind[dsttype] != 0.0) {
@@ -229,12 +220,12 @@ object GeoTrans {
         if (m_Ind[srctype] != 0.0) {
             val f = Math.exp(in_pt.x / (m_arMajor[srctype] * m_arScaleFactor[srctype]))
             val g = 0.5 * (f - 1.0 / f)
-            val temp =
+            val temp: Double =
                 m_arLatCenter[srctype] + tmpPt.y / (m_arMajor[srctype] * m_arScaleFactor[srctype])
             val h = Math.cos(temp)
             val con = Math.sqrt((1.0 - h * h) / (1.0 + g * g))
             out_pt.y = asinz(con)
-            if (temp < 0) out_pt.y *= -1.0
+            if (temp < 0) out_pt.y *= -1
             if (g == 0.0 && h == 0.0) {
                 out_pt.x = m_arLonCenter[srctype]
             } else {
@@ -243,7 +234,7 @@ object GeoTrans {
         }
         tmpPt.x -= m_arFalseEasting[srctype]
         tmpPt.y -= m_arFalseNorthing[srctype]
-        val con = (src_m[srctype] + tmpPt.y / m_arScaleFactor[srctype]) / m_arMajor[srctype]
+        val con: Double = (src_m[srctype] + tmpPt.y / m_arScaleFactor[srctype]) / m_arMajor[srctype]
         var phi = con
         var i = 0
         while (true) {
@@ -272,7 +263,7 @@ object GeoTrans {
             val cont = 1.0 - m_Es[srctype] * sin_phi * sin_phi
             val n = m_arMajor[srctype] / Math.sqrt(cont)
             val r = n * (1.0 - m_Es[srctype]) / cont
-            val d = tmpPt.x / (n * m_arScaleFactor[srctype])
+            val d: Double = tmpPt.x / (n * m_arScaleFactor[srctype])
             val ds = d * d
             out_pt.y =
                 phi - n * tan_phi * ds / r * (0.5 - ds / 24.0 * (5.0 + 3.0 * t + 10.0 * c - 4.0 * cs - 9.0 * m_Esp[srctype] - ds / 30.0 * (61.0 + 90.0 * t + 298.0 * c + 45.0 * ts - 252.0 * m_Esp[srctype] - 3.0 * cs)))
@@ -300,16 +291,16 @@ object GeoTrans {
     }
 
     fun getDistancebyKatec(pt1: GeoPoint, pt2: GeoPoint): Double {
-        var pt1 = pt1
-        var pt2 = pt2
+        var pt1: GeoPoint = pt1
+        var pt2: GeoPoint = pt2
         pt1 = convert(KATEC, GEO, pt1)
         pt2 = convert(KATEC, GEO, pt2)
         return getDistancebyGeo(pt1, pt2)
     }
 
     fun getDistancebyTm(pt1: GeoPoint, pt2: GeoPoint): Double {
-        var pt1 = pt1
-        var pt2 = pt2
+        var pt1: GeoPoint = pt1
+        var pt2: GeoPoint = pt2
         pt1 = convert(TM, GEO, pt1)
         pt2 = convert(TM, GEO, pt2)
         return getDistancebyGeo(pt1, pt2)
@@ -323,9 +314,9 @@ object GeoTrans {
         return Math.ceil((getTimebySec(distance) / 60).toDouble()).toLong()
     }
     /*
-    Author:       Richard Greenwood rich@greenwoodmap.com
-    License:      LGPL as per: http://www.gnu.org/copyleft/lesser.html
-    */
+	Author:       Richard Greenwood rich@greenwoodmap.com
+	License:      LGPL as per: http://www.gnu.org/copyleft/lesser.html
+	*/
     /**
      * convert between geodetic coordinates (longitude, latitude, height)
      * and gecentric coordinates (X, Y, Z)
@@ -359,21 +350,21 @@ object GeoTrans {
     private fun geodetic_to_geocentric(type: Int, p: GeoPoint): Boolean {
 
         /*
-     * The function Convert_Geodetic_To_Geocentric converts geodetic coordinates
-     * (latitude, longitude, and height) to geocentric coordinates (X, Y, Z),
-     * according to the current ellipsoid parameters.
-     *
-     *    Latitude  : Geodetic latitude in radians                     (input)
-     *    Longitude : Geodetic longitude in radians                    (input)
-     *    Height    : Geodetic height, in meters                       (input)
-     *    X         : Calculated Geocentric X coordinate, in meters    (output)
-     *    Y         : Calculated Geocentric Y coordinate, in meters    (output)
-     *    Z         : Calculated Geocentric Z coordinate, in meters    (output)
-     *
-     */
-        var Longitude = p.x
-        var Latitude = p.y
-        val Height = p.z
+	 * The function Convert_Geodetic_To_Geocentric converts geodetic coordinates
+	 * (latitude, longitude, and height) to geocentric coordinates (X, Y, Z),
+	 * according to the current ellipsoid parameters.
+	 *
+	 *    Latitude  : Geodetic latitude in radians                     (input)
+	 *    Longitude : Geodetic longitude in radians                    (input)
+	 *    Height    : Geodetic height, in meters                       (input)
+	 *    X         : Calculated Geocentric X coordinate, in meters    (output)
+	 *    Y         : Calculated Geocentric Y coordinate, in meters    (output)
+	 *    Z         : Calculated Geocentric Z coordinate, in meters    (output)
+	 *
+	 */
+        var Longitude: Double = p.x
+        var Latitude: Double = p.y
+        val Height: Double = p.z
         val X: Double // output
         val Y: Double
         val Z: Double
@@ -383,10 +374,10 @@ object GeoTrans {
         val Cos_Lat: Double /*  Math.cos(Latitude)  */
 
         /*
-      ** Don't blow up if Latitude is just a little out of the value
-      ** range as it may just be a rounding issue.  Also removed longitude
-      ** test, it should be wrapped by Math.cos() and Math.sin().  NFW for PROJ.4, Sep/2001.
-      */if (Latitude < -HALF_PI && Latitude > -1.001 * HALF_PI) Latitude =
+	  ** Don't blow up if Latitude is just a little out of the value
+	  ** range as it may just be a rounding issue.  Also removed longitude
+	  ** test, it should be wrapped by Math.cos() and Math.sin().  NFW for PROJ.4, Sep/2001.
+	  */if (Latitude < -HALF_PI && Latitude > -1.001 * HALF_PI) Latitude =
             -HALF_PI else if (Latitude > HALF_PI && Latitude < 1.001 * HALF_PI) Latitude =
             HALF_PI else if (Latitude < -HALF_PI || Latitude > HALF_PI) { /* Latitude out of range */
             return true
@@ -411,9 +402,9 @@ object GeoTrans {
      * Geocentric to Geodetic Coordinate Conversion', by Ralph Toms, Feb 1996
      */
     private fun geocentric_to_geodetic(type: Int, p: GeoPoint) {
-        val X = p.x
-        val Y = p.y
-        val Z = p.z
+        val X: Double = p.x
+        val Y: Double = p.y
+        val Z: Double = p.z
         val Longitude: Double
         var Latitude = 0.0
         val Height: Double

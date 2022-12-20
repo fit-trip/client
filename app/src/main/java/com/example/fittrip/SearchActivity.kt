@@ -53,11 +53,9 @@ class SearchActivity : AppCompatActivity() {
 
                 // result를 순회하며 KETEC 좌표를 위도, 경도로 변환한 값을 저장
                 for (i in 0 until result.size) {
-                    Log.d("ryu", "mapx: ${result[i].mapx}")
-                    Log.d("ryu", "mapy: ${result[i].mapy}")
 
-                    var katec = GeoPoint(result[i].mapx.toDouble(), result[i].mapy.toDouble())
-                    katec = GeoTrans.convert(GeoTrans.TM, GeoTrans.GEO, katec)
+                    var katec = GeoPoint(result[i].mapx, result[i].mapy)
+                    katec = GeoTrans.convert(GeoTrans.KATEC, GeoTrans.GEO, katec)
                     result[i].latitude = katec.y
                     result[i].longitude = katec.x
                 }
@@ -85,6 +83,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
+        searchPlace("신천역")
 
         val search_view = binding.searchView
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
