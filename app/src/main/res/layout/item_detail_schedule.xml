@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:padding="15dp"
+    android:layout_margin="5dp"
     android:gravity="center_vertical"
     android:background="@drawable/schedule_detail"
     >
+
     <LinearLayout
         android:id="@+id/item_detail_schedule_name_root"
         android:layout_width="0dp"
