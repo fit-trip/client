@@ -103,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_share_form_title"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:textSize="15sp"
                     android:maxLines="3"
                     android:hint="공유할 스케줄에 대한 설명" />
@@ -113,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="25dp"
                     android:gravity="center_vertical"
                     android:layout_below="@id/edit_share_form">
 
