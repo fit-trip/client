@@ -16,6 +16,7 @@ interface LoginApi {
 }
 
 data class LoginResponseDto(
+    val username: String,
     val accessToken: String
 )
 

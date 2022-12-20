@@ -33,6 +33,12 @@ interface ScheduleApi {
         @Body req: ShareScheduleRequest
     ): retrofit2.Call<Unit>
 
+    @POST("/api/v1/schedules/copy")
+    fun copySchedule(
+        @Header("Authorization") token: String,
+        @Body scheduleId: CopyRequest
+    ): retrofit2.Call<Unit>
+
     @GET("/api/v1/schedules/shared")
     fun getAllSharedSchedule(): retrofit2.Call<List<ScheduleResponse>>
     // ### Schedule Detail ###
@@ -62,6 +68,7 @@ data class RouteInfoPerFareDto(
 data class ScheduleResponse(
     var id: Int,
     var name: String,
+    var ownerId: String,
     var totalDuration: Int,
     var totalFare: Int,
     var sharedStatus: Boolean,
@@ -79,4 +86,8 @@ data class ShareScheduleRequest(
     var scheduleId: Int,
     var sharedStatus: Boolean,
     var description: String
+)
+
+data class CopyRequest(
+    var scheduleId: Int
 )

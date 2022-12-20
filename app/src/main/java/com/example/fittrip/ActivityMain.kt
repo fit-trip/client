@@ -9,7 +9,6 @@ import com.example.fittrip.databinding.ActivityMainBinding
 import com.example.fittrip.schedule.fragment.MyScheduleFragment
 import com.example.fittrip.schedule.fragment.SharedScheduleFragment
 import java.security.MessageDigest
-import java.util.Base64
 
 
 class ActivityMain : AppCompatActivity() {
@@ -23,6 +22,19 @@ class ActivityMain : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(MainFragment())
+
+        val stringExtra = intent.getStringExtra("FragmentName")
+        if (stringExtra == "sharedSchedule") {
+            replaceFragment(SharedScheduleFragment())
+            binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_home).isChecked = false
+            binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_share).isChecked = true
+        }
+
+        if (stringExtra == "mySchedule") {
+            replaceFragment(MyScheduleFragment())
+            binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_home).isChecked = false
+            binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_my_page).isChecked = true
+        }
 
         if (intent.getParcelableArrayExtra("selectedPlaces") != null) {
             val myScheduleFragment = MyScheduleFragment()

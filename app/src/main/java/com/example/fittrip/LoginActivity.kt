@@ -58,7 +58,9 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("ryu ", "login response: ${response.body()}")
 
                 val token = response.body()?.accessToken
+                val name = response.body()?.username
                 if (token != null) {
+                    TokenManager.name = name ?: "Anonymous User"
                     TokenManager.token = token
                     Log.d("ryu", "token: ${TokenManager.token}")
                     Toast.makeText(this@LoginActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
