@@ -24,7 +24,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:src="@android:drawable/ic_menu_share"
-                app:backgroundTint="@color/skyBlueDark"
+                app:backgroundTint="@color/skyBlue"
                 android:contentDescription="공유 버튼" />
         </RelativeLayout>
         <RelativeLayout
