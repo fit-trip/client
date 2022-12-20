@@ -1,5 +1,6 @@
 package com.example.fittrip.schedule
 
+import com.example.fittrip.BuildConfig
 import com.example.fittrip.map.dto.LocationDto
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -10,8 +11,7 @@ import retrofit2.http.Query
 
 interface ScheduleApi {
     companion object {
-//        const val BASE_URL = "http://10.0.2.2:8080"
-        const val BASE_URL = "http://172.20.39.161:8080"
+        const val BASE_URL = BuildConfig.SERVER_URL
     }
 
     @GET("/api/v1/schedules")
