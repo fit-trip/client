@@ -1,6 +1,7 @@
 package com.example.fittrip.map
 
 import android.util.Log
+import com.example.fittrip.R
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -10,9 +11,20 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MapViewCommander(private val mapView: MapView) {
+    companion object{
+        val listedMarkerId: List<Int> = listOf(
+            R.drawable.one_150,
+            R.drawable.two_150,
+            R.drawable.three_150
+        )
+    }
+
+    fun setZoomLevel(zoomLevel: Int) {
+        mapView.setZoomLevel(zoomLevel, true)
+    }
+
     fun setMapPosition(x: Double, y: Double) {
         this.mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(x, y), true)
     }
@@ -27,6 +39,28 @@ class MapViewCommander(private val mapView: MapView) {
             poiItem.selectedMarkerType = MapPOIItem.MarkerType.RedPin
             this.mapView.addPOIItem(poiItem)
         }
+    }
+
+    fun addListedMarker(marker: List<Marker>) {
+        mapView.removeAllPOIItems()
+        if (marker.size > 3) {
+            //TODO("Marker 갯수 늘리기")
+            return
+        }
+
+        for (i in marker.indices) {
+            val poiItem = MapPOIItem()
+            poiItem.itemName = marker[i].name
+
+            poiItem.markerType = MapPOIItem.MarkerType.CustomImage
+            poiItem.customImageResourceId = listedMarkerId[i]
+
+            poiItem.tag = marker[i].tag
+            poiItem.mapPoint = MapPoint.mapPointWithGeoCoord(marker[i].y, marker[i].x)
+            this.mapView.addPOIItem(poiItem)
+        }
+
+
     }
 
     fun loadMarker(x: Double?, y: Double?) {
@@ -45,10 +79,10 @@ class MapViewCommander(private val mapView: MapView) {
                 Log.d("psh", "${response.body()}")
 
                 val placeList = response.body()?.documents
-                val markers = ArrayList<MapViewCommander.Marker>();
+                val markers = ArrayList<Marker>();
 
                 placeList?.forEach {
-                    val marker = MapViewCommander.Marker(
+                    val marker = Marker(
                         it.place_name,
                         it.x.toDouble(),
                         it.y.toDouble(),

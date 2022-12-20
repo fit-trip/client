@@ -26,13 +26,13 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginBtn = view.findViewById(R.id.loginBtn)
-
-        loginBtn.setOnClickListener {
-            Log.d("seunggi", "clicked!")
-            var intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
-        }
+//        loginBtn = view.findViewById(R.id.loginBtn)
+//
+//        loginBtn.setOnClickListener {
+//            Log.d("seunggi", "clicked!")
+//            var intent = Intent(context, LoginActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
