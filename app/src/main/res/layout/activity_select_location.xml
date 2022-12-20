@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:text="@string/selected_location"
             android:textSize="30dp"
+            android:padding="5dp"
             android:gravity="center"/>
         <View
             android:layout_width="match_parent"
