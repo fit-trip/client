@@ -13,7 +13,7 @@ import com.example.fittrip.map.activity.SelectLocationActivity
 
 class SearchResultViewHolder(val binding: ItemSearchResultBinding): RecyclerView.ViewHolder(binding.root)
 
-class SearchResultAdapter(private val datas: MutableList<SearchResult>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SearchResultAdapter(val scheduleName: String, private val datas: MutableList<SearchResult>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var binding: ItemSearchResultBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
             = SearchResultViewHolder(ItemSearchResultBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -34,6 +34,7 @@ class SearchResultAdapter(private val datas: MutableList<SearchResult>): Recycle
 
             // SelectLocationActivity로 이동
             val intent = Intent(it.context, SelectLocationActivity::class.java)
+            intent.putExtra("scheduleName", scheduleName)
             intent.putExtra("title", datas[position].title)
             intent.putExtra("lat", datas[position].latitude)
             intent.putExtra("lng", datas[position].longitude)

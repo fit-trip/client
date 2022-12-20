@@ -40,9 +40,10 @@ class MyScheduleFragment : Fragment() {
         adapter.refreshMySchedule()
 
         val selectedPlaces = arguments?.getParcelableArray("selectedPlaces")
+        val scheduleName = arguments?.getString("scheduleName")
 
         if (selectedPlaces != null) {
-            adapter.addAndRefreshMySchedule(selectedPlaces)
+            adapter.addAndRefreshMySchedule(scheduleName!!, selectedPlaces)
         } else {
             adapter.refreshMySchedule()
         }

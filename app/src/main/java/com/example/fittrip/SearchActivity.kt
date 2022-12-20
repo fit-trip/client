@@ -21,6 +21,7 @@ class SearchActivity : AppCompatActivity() {
 
     var result: MutableList<SearchResult> = mutableListOf()
     lateinit var binding: ActivitySearchBinding
+    var scheduleName: String = "새로운 일정"
 
     fun searchPlace(query: String) {
         result.clear()
@@ -66,7 +67,7 @@ class SearchActivity : AppCompatActivity() {
 
                 // result를 SearchActivity의 목록에 출력
                 val recyclerView = binding.searchRecyclerView
-                recyclerView.adapter = SearchResultAdapter(result)
+                recyclerView.adapter = SearchResultAdapter(scheduleName, result)
                 recyclerView.layoutManager = LinearLayoutManager(this@SearchActivity)
 //                recyclerView.addItemDecoration(DividerItemDecoration(this@SearchActivity, DividerItemDecoration.VERTICAL))
             }
@@ -86,6 +87,10 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        intent.getStringExtra("scheduleName")?.let {
+            scheduleName = it
+        }
+
         binding = ActivitySearchBinding.inflate(layoutInflater)
 //        searchPlace("신천역")
 

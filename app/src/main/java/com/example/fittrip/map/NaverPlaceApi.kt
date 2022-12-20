@@ -32,6 +32,7 @@ data class NaverPlaceResponse(
 )
 
 data class SearchResult(
+    var scheduleName: String,
     var title: String,
     var link: String,
     var category: String,

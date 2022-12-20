@@ -7,36 +7,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import com.example.fittrip.databinding.FragmentMainBinding
 
 
 class MainFragment : Fragment(), View.OnClickListener {
 
-    lateinit var InputEditText: EditText
+    lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_main, container, false)
-        // Inflate the layout for this fragment
-
-        InputEditText = root.findViewById<EditText>(R.id.InputEditText)
-        InputEditText.setOnClickListener(this)
-
-        return root
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding.btnStartSchedule.setOnClickListener(this)
+        binding.btnCreateSchedule.setOnClickListener(this)
+        return binding.root
     }
 
     override fun onClick(view: View) {
         when(view.id) {
+            R.id.btn_start_schedule -> {
+                binding.btnStartSchedule.visibility = View.GONE
+                binding.formScheduleName.visibility = View.VISIBLE
+            }
 
-            R.id.InputEditText -> {
-                val title = InputEditText.text.toString()
-                println(title)
+            R.id.btn_create_schedule -> {
+                val title = binding.editScheduleName.text.toString()
 
                 Intent(activity, SearchActivity::class.java).apply {
-                    putExtra("title", title)
+                    putExtra("scheduleName", title)
                     startActivity(this)
                 }
-
             }
 
         }

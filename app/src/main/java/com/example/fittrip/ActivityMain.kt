@@ -33,7 +33,7 @@ class ActivityMain : AppCompatActivity() {
         if (stringExtra == "mySchedule") {
             replaceFragment(MyScheduleFragment())
             binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_home).isChecked = false
-            binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_my_page).isChecked = true
+            binding.bottomNavigationView.menu.findItem(R.id.fragment_main_navigationBottomView_my_schedule).isChecked = true
         }
 
         if (intent.getParcelableArrayExtra("selectedPlaces") != null) {

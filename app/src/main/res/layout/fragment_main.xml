@@ -54,8 +54,8 @@
                     android:textSize="90dp"/>
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/InputEditText"
+            <Button
+                android:id="@+id/btn_start_schedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -66,9 +66,42 @@
                 android:textStyle="bold"
                 android:inputType="text"
                 android:textSize="16dp"
-                android:padding="16dp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent" />
+
+            <RelativeLayout
+                android:id="@+id/form_schedule_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_corners"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:visibility="gone"
+                >
+                <EditText
+                    android:id="@+id/edit_schedule_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:background="@color/white"
+                    android:hint="여행 제목을 입력해주세요"
+                    android:textStyle="bold"
+                    android:inputType="text"
+                    android:textSize="16dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="16dp"
+                    android:textColor="@color/black"
+                    />
+                <ImageView
+                    android:id="@+id/btn_create_schedule"
+                    android:layout_toRightOf="@+id/edit_schedule_name"
+                    android:layout_width="30dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/btn_submit"/>
+            </RelativeLayout>
+
 
 
         </LinearLayout>

@@ -31,8 +31,13 @@ class SelectLocationActivity : AppCompatActivity(),
 
     private val selectedPlaces = mutableListOf<LocationDto>()
 
+    lateinit var scheduleName: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        intent.getStringExtra("scheduleName")?.let {
+            scheduleName = it
+        }
         binding = ActivitySelectLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -81,6 +86,7 @@ class SelectLocationActivity : AppCompatActivity(),
                 Toast.makeText(this, "일정 생성", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, ActivityMain::class.java)
+                intent.putExtra("scheduleName", scheduleName)
                 intent.putExtra("selectedPlaces", selectedPlaces.toTypedArray())
                 finish()
                 startActivity(intent)
