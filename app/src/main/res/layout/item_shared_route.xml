@@ -4,17 +4,17 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginBottom="5dp"
     android:gravity="center"
     >
     <TextView
         android:id="@+id/text_route_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
+        android:background="@drawable/shared_route_item"
         android:text="장소 이름"
-        android:padding="10dp"
-        android:textSize="14dp"
+        android:padding="12dp"
+        android:textSize="15sp"
         android:textColor="@color/white"
         />
 </LinearLayout>
