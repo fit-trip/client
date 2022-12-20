@@ -1,5 +1,6 @@
 package com.example.fittrip.map
 
+import com.example.fittrip.BuildConfig
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -7,7 +8,7 @@ import retrofit2.http.Query
 interface KaKaoPlaceApi {
     companion object {
         const val BASE_URL = "https://dapi.kakao.com"
-        const val REST_API_KEY = "1f5fc33109892628ac4b9609c276f2d6"
+        const val REST_API_KEY = BuildConfig.Kakao_REST_Api_Key
     }
 
     @GET("/v2/local/search/category.json")
