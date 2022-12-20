@@ -2,7 +2,6 @@ package com.example.fittrip.login
 
 import retrofit2.http.Body
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface LoginApi {
     companion object {
