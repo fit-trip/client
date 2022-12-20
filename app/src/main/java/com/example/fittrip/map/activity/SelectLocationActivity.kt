@@ -82,6 +82,7 @@ class SelectLocationActivity : AppCompatActivity(),
 
                 val intent = Intent(this, ActivityMain::class.java)
                 intent.putExtra("selectedPlaces", selectedPlaces.toTypedArray())
+                finish()
                 startActivity(intent)
 
 //                val intent = Intent(this, MyScheduleActivity::class.java)
