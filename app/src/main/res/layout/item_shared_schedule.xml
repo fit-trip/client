@@ -47,8 +47,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/copy"
                     />
             </RelativeLayout>
@@ -57,6 +57,8 @@
                 android:id="@+id/recyclerview_schedule_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
                 />
             <TextView
                 android:id="@+id/text_schedule_desc"
