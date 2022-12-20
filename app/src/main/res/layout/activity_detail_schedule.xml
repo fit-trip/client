@@ -69,7 +69,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:background="@drawable/dialog"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_gravity="center"
         android:layout_centerInParent="true">
 
