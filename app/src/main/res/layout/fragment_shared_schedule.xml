@@ -14,7 +14,8 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_schedule_recyclerview"
+        android:id="@+id/recyclerview_shared_schedule"
+        android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

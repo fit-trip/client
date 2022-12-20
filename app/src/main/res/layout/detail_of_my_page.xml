@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_height="match_parent"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:text="DetilOfMypageActivity"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </LinearLayout>
