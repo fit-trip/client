@@ -64,51 +64,84 @@
         android:background="#45000000"/>
 
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
         android:id="@+id/layout_share_form"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:background="@color/lightGray"
+        android:background="@drawable/dialog"
         android:visibility="invisible"
         android:layout_gravity="center"
         android:layout_centerInParent="true">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
-                <ImageButton
-                    android:id="@+id/btn_close_form"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel"
-                    android:layout_alignParentTop="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginBottom="10dp"
-                    />
+                android:padding="10dp">
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/btn_close_form"-->
+<!--                    android:src="@android:drawable/ic_menu_close_clear_cancel"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_width="20dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    />-->
 
                 <TextView
                     android:id="@+id/text_share_form_title"
-                    android:layout_below="@+id/btn_close_form"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="공유하는 스케줄에 대한 간단한 설명을 적어주세요"
+                    android:layout_marginTop="5dp"
+                    android:text="스케줄 공유"
+                    android:textSize="20sp"
+                    android:layout_centerHorizontal="true"
                     android:textStyle="bold"
                     />
 
                 <EditText
                     android:id="@+id/edit_share_form"
-                    android:layout_below="@id/text_share_form_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/text_share_form_title"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15sp"
                     android:maxLines="3"
-                    android:hint="여기에 입력해 주세요" />
+                    android:hint="공유할 스케줄에 대한 설명" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_share_req"
-                    android:layout_below="@id/edit_share_form"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="공유하기"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:layout_below="@id/edit_share_form">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_close_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/dialog_cancel"
+                        android:layout_gravity="right"
+                        android:layout_margin="4dp"
+                        android:text="닫기"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_share_req"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/dialog_confirm"
+                        android:layout_gravity="right"
+                        android:textColor="@color/white"
+                        android:layout_margin="4dp"
+                        android:text="공유하기"/>
+                </LinearLayout>
             </RelativeLayout>
 
     </FrameLayout>
