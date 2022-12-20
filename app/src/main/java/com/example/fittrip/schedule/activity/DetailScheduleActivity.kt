@@ -1,5 +1,6 @@
 package com.example.fittrip.schedule.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.View.OnTouchListener
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fittrip.ActivityMain
 import com.example.fittrip.TokenManager
 import com.example.fittrip.databinding.ActivityDetailScheduleBinding
 import com.example.fittrip.map.MapViewCommander
@@ -134,7 +136,6 @@ class DetailScheduleActivity : AppCompatActivity() {
         }
 
         binding.btnShareReq.setOnClickListener {
-            //TODO("공유 요청 시 간단 소개 내용 포함")
             val content = binding.editShareForm.text.toString()
             Log.d("psh", "$content")
 
@@ -143,7 +144,10 @@ class DetailScheduleActivity : AppCompatActivity() {
                 ShareScheduleRequest(scheduleId, true, content)
             ).enqueue(object : Callback<Unit> {
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-//                    TODO("Not yet implemented")
+                    val intent = Intent(this@DetailScheduleActivity, ActivityMain::class.java)
+                    intent.putExtra("FragmentName", "sharedSchedule")
+                    finish()
+                    startActivity(intent)
                 }
 
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
@@ -198,7 +202,7 @@ class DetailScheduleActivity : AppCompatActivity() {
 
                 //Mapview setup
                 mapViewCommander.addListedMarker(markersPerFare)
-                mapViewCommander.setMapPosition(initY/3, initX/3)
+                mapViewCommander.setMapPosition(initY/routePerDuration.locations.size, initX/routePerDuration.locations.size)
 
                 recyclerView = binding.detailScheduleRecyclerView
                 recyclerView.adapter = fareInfoAdapter

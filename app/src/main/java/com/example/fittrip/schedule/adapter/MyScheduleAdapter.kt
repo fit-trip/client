@@ -97,7 +97,8 @@ class MyScheduleAdapter(val datas: MutableList<ScheduleResponse>): RecyclerView.
                 sharedStatus = false,
                 totalDuration = 0,
                 locationsName = listOf(),
-                description = ""
+                description = "",
+                ownerId = ""
             )
 
             private fun refreshCompleteSchedule(mySchedules: MutableList<ScheduleResponse>) {

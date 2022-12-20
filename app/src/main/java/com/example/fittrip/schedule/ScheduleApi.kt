@@ -10,8 +10,8 @@ import retrofit2.http.Query
 
 interface ScheduleApi {
     companion object {
-//        const val BASE_URL = "http://10.0.2.2:8080"
-        const val BASE_URL = "http://172.20.39.161:8080"
+        const val BASE_URL = "http://10.0.2.2:8080"
+//        const val BASE_URL = "http://172.20.39.161:8080"
     }
 
     @GET("/api/v1/schedules")
@@ -31,6 +31,12 @@ interface ScheduleApi {
     fun changeShareStatus(
         @Header("Authorization") token: String,
         @Body req: ShareScheduleRequest
+    ): retrofit2.Call<Unit>
+
+    @POST("/api/v1/schedules/copy")
+    fun copySchedule(
+        @Header("Authorization") token: String,
+        @Body scheduleId: CopyRequest
     ): retrofit2.Call<Unit>
 
     @GET("/api/v1/schedules/shared")
@@ -62,6 +68,7 @@ data class RouteInfoPerFareDto(
 data class ScheduleResponse(
     var id: Int,
     var name: String,
+    var ownerId: String,
     var totalDuration: Int,
     var totalFare: Int,
     var sharedStatus: Boolean,
@@ -79,4 +86,8 @@ data class ShareScheduleRequest(
     var scheduleId: Int,
     var sharedStatus: Boolean,
     var description: String
+)
+
+data class CopyRequest(
+    var scheduleId: Int
 )

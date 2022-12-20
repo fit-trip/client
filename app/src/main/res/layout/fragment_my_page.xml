@@ -6,44 +6,31 @@
     android:orientation="vertical"
     tools:context=".MyPageFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp"
-        android:text="마이 페이지"
-        android:textColor="@color/black"
-        android:textSize="25dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/text_username"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:textStyle="bold"
             android:layout_gravity="left"
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
-            android:text="User"
+            android:text="User 님의 마이페이지"
             android:textColor="@color/black"
-            android:textSize="45dp"></TextView>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:textSize="24dp"/>
 
         <TextView
-            android:id="@+id/userInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:paddingRight="15dp"
-            android:text="회원정보 수정"
-            android:textColor="@color/skyBlue"></TextView>
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:background="@color/lightGray"
+            android:layout_height="1dp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -51,78 +38,140 @@
         android:layout_height="wrap_content"
        android:paddingTop="20dp"
         android:paddingBottom="20dp"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <Button
+        <TextView
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_margin="5dp"
             android:id="@+id/reason"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="Fit-Trip이 특별한 이유"
+            android:text="❗ ️Fit-Trip이 특별한 이유"
             android:textColor="@color/black"
             android:textSize="16dp" />
 
-        <Button
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="300dp"
+            android:background="@color/lightGray"
+            android:layout_height="1dp"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_margin="5dp"
             android:id="@+id/howToUse"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="Fit-Trip 사용법"
+            android:text="📃 Fit-Trip 사용법"
             android:textColor="@color/black"
             android:textSize="16dp" />
 
-        <Button
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="300dp"
+            android:background="@color/lightGray"
+            android:layout_height="1dp"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_margin="5dp"
             android:id="@+id/authorization"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="권한설정"
+            android:text="🔒 개인정보처리방침"
             android:textColor="@color/black"
             android:textSize="16dp" />
 
-        <Button
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="300dp"
+            android:background="@color/lightGray"
+            android:layout_height="1dp"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_margin="5dp"
             android:id="@+id/ask"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="문의사항"
+            android:text="❓ 문의사항"
             android:textColor="@color/black"
             android:textSize="16dp" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="300dp"
+            android:background="@color/lightGray"
+            android:layout_height="1dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity="center"
         android:paddingTop="20dp"
         android:paddingBottom="20dp">
 
-        <Button
+        <TextView
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_margin="5dp"
             android:id="@+id/appVersion"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="앱 버전"
+            android:text="업데이트 확인"
             android:textColor="@color/black"
-            android:textSize="16dp"></Button>
+            android:textSize="16dp"/>
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="300dp"
+            android:background="@color/lightGray"
+            android:layout_height="1dp"/>
 
-        <Button
+        <TextView
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_margin="5dp"
             android:id="@+id/deleteUser"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="회원 탈퇴"
             android:textColor="@color/black"
             android:textSize="16dp" />
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="300dp"
+            android:background="@color/lightGray"
+            android:layout_height="1dp"/>
 
-        <Button
+        <TextView
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_margin="5dp"
             android:id="@+id/logout"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="로그아웃"
             android:textColor="@color/black"
             android:textSize="16dp" />
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="300dp"
+            android:background="@color/lightGray"
+            android:layout_height="1dp"/>
 
 
     </LinearLayout>
