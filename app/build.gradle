@@ -62,4 +62,5 @@ dependencies {
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/libDaumMapAndroid.jar')
+    implementation("androidx.cardview:cardview:1.0.0")
 }

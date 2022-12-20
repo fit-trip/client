@@ -68,7 +68,7 @@ class SearchActivity : AppCompatActivity() {
                 val recyclerView = binding.searchRecyclerView
                 recyclerView.adapter = SearchResultAdapter(result)
                 recyclerView.layoutManager = LinearLayoutManager(this@SearchActivity)
-                recyclerView.addItemDecoration(DividerItemDecoration(this@SearchActivity, DividerItemDecoration.VERTICAL))
+//                recyclerView.addItemDecoration(DividerItemDecoration(this@SearchActivity, DividerItemDecoration.VERTICAL))
             }
 
 
@@ -87,7 +87,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
-        searchPlace("신천역")
+//        searchPlace("신천역")
 
         val search_view = binding.searchView
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

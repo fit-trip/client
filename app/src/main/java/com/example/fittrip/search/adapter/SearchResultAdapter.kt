@@ -27,7 +27,7 @@ class SearchResultAdapter(private val datas: MutableList<SearchResult>): Recycle
         binding.positionCategory.text = datas[position].category
         binding.positionAddress.text = datas[position].roadAddress
 
-        binding.itemScheduleNameRoot.setOnClickListener {
+        binding.positionCardView.setOnClickListener {
             Log.d("ryu", "datas[position].title: ${datas[position].title}")
             Log.d("ryu", "datas[position].latitude: ${datas[position].latitude}")
             Log.d("ryu", "datas[position].longitude: ${datas[position].longitude}")
