@@ -64,42 +64,37 @@ class MyPageFragment : Fragment(), View.OnClickListener {
 
             //리니어 레이아웃 1
             R.id.userInfo -> {
-//                Intent(activity, RegisterActivity::class.java).apply {
-//                    putExtra("title", title)
-//                    startActivity(this)
-//                }
+                Intent(activity, DetailOfMyPageActivity::class.java).apply {
+                    startActivity(this)
+                }
                 Log.i("Fit-Trip", "userInfo")
             }
 
             R.id.reason -> {
-//                Intent(activity, RegisterActivity::class.java).apply {
-//                    putExtra("title", title)
-//                    startActivity(this)
-//                }
+                Intent(activity, DetailOfMyPageActivity::class.java).apply {
+                    startActivity(this)
+                }
                 Log.i("Fit-Trip", "reason")
             }
 
             R.id.howToUse -> {
-//                Intent(activity, RegisterActivity::class.java).apply {
-//                    putExtra("title", title)
-//                    startActivity(this)
-//                }
+                Intent(activity, DetailOfMyPageActivity::class.java).apply {
+                    startActivity(this)
+                }
                 Log.i("Fit-Trip", "HowToUse")
             }
 
             R.id.authorization -> {
-//                Intent(activity, RegisterActivity::class.java).apply {
-//                    putExtra("title", title)
-//                    startActivity(this)
-//                }
+                Intent(activity, DetailOfMyPageActivity::class.java).apply {
+                    startActivity(this)
+                }
                 Log.i("Fit-Trip", "Authorization")
             }
 
             R.id.ask -> {
-//                Intent(activity, RegisterActivity::class.java).apply {
-//                    putExtra("title", title)
-//                    startActivity(this)
-//                }
+                Intent(activity, DetailOfMyPageActivity::class.java).apply {
+                    startActivity(this)
+                }
                 Log.i("Fit-Trip", "Ask")
             }
 

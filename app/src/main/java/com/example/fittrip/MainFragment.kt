@@ -34,7 +34,7 @@ class MainFragment : Fragment(), View.OnClickListener {
                 val title = InputEditText.text.toString()
                 println(title)
 
-                Intent(activity, RegisterActivity::class.java).apply {
+                Intent(activity, SearchActivity::class.java).apply {
                     putExtra("title", title)
                     startActivity(this)
                 }
