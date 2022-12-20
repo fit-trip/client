@@ -21,6 +21,7 @@ android {
         // load 한 api key 값을 BuildConfig 파일에 저장
         buildConfigField "String", "X_Naver_Client_Id", properties['naver_client_id']
         buildConfigField "String", "X_Naver_Client_Secret", properties['naver_client_secret']
+        buildConfigField "String", "SERVER_URL", properties['server_url']
     }
 
     buildTypes {
