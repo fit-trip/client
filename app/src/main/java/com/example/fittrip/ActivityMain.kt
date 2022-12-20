@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.fittrip.databinding.ActivityMainBinding
 import com.example.fittrip.schedule.fragment.MyScheduleFragment
+import com.example.fittrip.schedule.fragment.SharedScheduleFragment
 
 class ActivityMain : AppCompatActivity() {
 
@@ -29,7 +30,7 @@ class ActivityMain : AppCompatActivity() {
             when (it.itemId) {
                 R.id.fragment_main_navigationBottomView_home -> replaceFragment(MainFragment())
                 R.id.fragment_main_navigationBottomView_my_schedule -> replaceFragment(MyScheduleFragment())
-                R.id.fragment_main_navigationBottomView_share -> replaceFragment(ShareFragment())
+                R.id.fragment_main_navigationBottomView_share -> replaceFragment(SharedScheduleFragment())
                 R.id.fragment_main_navigationBottomView_my_page -> replaceFragment(MyPageFragment())
                 else -> {
                 }
