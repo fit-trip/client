@@ -79,10 +79,10 @@ class MapViewCommander(private val mapView: MapView) {
                 Log.d("psh", "${response.body()}")
 
                 val placeList = response.body()?.documents
-                val markers = ArrayList<MapViewCommander.Marker>();
+                val markers = ArrayList<Marker>();
 
                 placeList?.forEach {
-                    val marker = MapViewCommander.Marker(
+                    val marker = Marker(
                         it.place_name,
                         it.x.toDouble(),
                         it.y.toDouble(),

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fittrip.databinding.FragmentMyScheduleBinding
-import com.example.fittrip.schedule.MyScheduleResponse
+import com.example.fittrip.schedule.ScheduleResponse
 import com.example.fittrip.schedule.adapter.MyScheduleAdapter
 
 
@@ -16,7 +16,7 @@ import com.example.fittrip.schedule.adapter.MyScheduleAdapter
 class MyScheduleFragment : Fragment() {
 
     lateinit var binding: FragmentMyScheduleBinding
-    var mySchedules = mutableListOf<MyScheduleResponse>()
+    var mySchedules = mutableListOf<ScheduleResponse>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

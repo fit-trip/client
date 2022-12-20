@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" >
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_share"
+                app:backgroundTint="@color/lightGray"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            >
+            <TextView
+                android:id="@+id/text_route_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소요 비용 최적 경로"
+                android:textColor="#EC2B2B"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+            <Switch
+                android:id="@+id/btn_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lightGray"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detail_schedule_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+    <View
+        android:id="@+id/background_blur"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#45000000"/>
+
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_share_form"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+                <ImageButton
+                    android:id="@+id/btn_close_form"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/text_share_form_title"
+                    android:layout_below="@+id/btn_close_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="공유하는 스케줄에 대한 간단한 설명을 적어주세요"
+                    android:textStyle="bold"
+                    />
+
+                <EditText
+                    android:id="@+id/edit_share_form"
+                    android:layout_below="@id/text_share_form_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:hint="여기에 입력해 주세요" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_share_req"
+                    android:layout_below="@id/edit_share_form"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공유하기"/>
+            </RelativeLayout>
+
+    </FrameLayout>
+</FrameLayout>
