@@ -348,6 +348,6 @@ obj/
 
 !/gradle/wrapper/gradle-wrapper.jar
 
-*.so
+app/src/main/jniLibs/*
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,macos,windows,android,androidstudio,kotlin
