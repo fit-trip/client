@@ -140,7 +140,7 @@ class DetailScheduleActivity : AppCompatActivity() {
 
             service.changeShareStatus(
                 TokenManager.token,
-                ShareScheduleRequest(scheduleId, true)
+                ShareScheduleRequest(scheduleId, true, content)
             ).enqueue(object : Callback<Unit> {
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
 //                    TODO("Not yet implemented")
@@ -164,8 +164,14 @@ class DetailScheduleActivity : AppCompatActivity() {
                 val routePerFare = body.fare
                 val routePerDuration = body.duration
 
+                var initX: Double = 0.0
+                var initY: Double = 0.0
+
                 //최적요금 정보 저장
                 for (i in routePerFare.locations.indices) {
+                    initX += routePerFare.locations[i].x!!
+                    initY += routePerFare.locations[i].y!!
+
                     val location = routePerFare.locations[i]
                     val cost: Int? = routePerFare.fareForNextPlace[i]
                     val route = RouteInfo(cost, location.name!!, RouteStatus.FARE)
@@ -186,11 +192,14 @@ class DetailScheduleActivity : AppCompatActivity() {
                     markersPerDuration.add(marker)
                 }
 
-
+                //Adapter setup
                 durationInfoAdapter = DetailScheduleAdapter(routesPerDuration)
                 fareInfoAdapter = DetailScheduleAdapter(routesPerFare)
 
+                //Mapview setup
                 mapViewCommander.addListedMarker(markersPerFare)
+                mapViewCommander.setMapPosition(initY/3, initX/3)
+
                 recyclerView = binding.detailScheduleRecyclerView
                 recyclerView.adapter = fareInfoAdapter
                 recyclerView.addItemDecoration(DividerItemDecoration(this@DetailScheduleActivity, LinearLayoutManager.VERTICAL))

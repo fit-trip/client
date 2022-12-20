@@ -26,15 +26,14 @@ interface ScheduleApi {
 
     // ### Schedule Share ###
 
-    @PUT("/api/v1/route")
+    @PUT("/api/v1/schedules")
     fun changeShareStatus(
         @Header("Authorization") token: String,
         @Body req: ShareScheduleRequest
     ): retrofit2.Call<Unit>
 
     @GET("/api/v1/schedules/shared")
-    fun getAllSharedSchedule(): retrofit2.Call<ScheduleResponse>
-
+    fun getAllSharedSchedule(): retrofit2.Call<List<ScheduleResponse>>
     // ### Schedule Detail ###
 
     @GET("/api/v1/route")
@@ -66,7 +65,8 @@ data class ScheduleResponse(
     var totalFare: Int,
     var sharedStatus: Boolean,
     var locationsName: List<String>,
-    var isProgressed: Boolean = false
+    var isProgressed: Boolean = false,
+    var description: String
 )
 
 data class CreateScheduleRequest(
@@ -76,5 +76,6 @@ data class CreateScheduleRequest(
 
 data class ShareScheduleRequest(
     var scheduleId: Int,
-    var sharedStatus: Boolean
+    var sharedStatus: Boolean,
+    var description: String
 )
