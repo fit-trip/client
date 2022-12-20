@@ -35,7 +35,7 @@ class MyScheduleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = MyScheduleAdapter(mySchedules)
+        val adapter = MyScheduleAdapter(this.requireActivity(), mySchedules)
         setAdaptorOnRecyclerView(adapter)
         adapter.refreshMySchedule()
 

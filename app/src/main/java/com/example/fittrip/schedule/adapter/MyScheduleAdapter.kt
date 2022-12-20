@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fittrip.ActivityMain
 import com.example.fittrip.TokenManager
 import com.example.fittrip.databinding.ItemMyScheduleBinding
 import com.example.fittrip.map.dto.LocationDto
@@ -25,7 +27,7 @@ import java.time.LocalDateTime
 class MyScheduleViewHolder(val binding: ItemMyScheduleBinding)
     : RecyclerView.ViewHolder(binding.root)
 
-class MyScheduleAdapter(val datas: MutableList<ScheduleResponse>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MyScheduleAdapter(val parentActivity: FragmentActivity, val datas: MutableList<ScheduleResponse>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     lateinit var binding: ItemMyScheduleBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
             = MyScheduleViewHolder(ItemMyScheduleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -79,15 +81,11 @@ class MyScheduleAdapter(val datas: MutableList<ScheduleResponse>): RecyclerView.
                 }
 
                 refreshCompleteSchedule(mySchedules)
-
                 if (!complete) {
-                    Log.d("psh", "${LocalDateTime.now()}")
-                    Log.d("psh", "inComplete!")
                     datas.add(0, inCompletedSchedule())
                 }
 //                 TODO("가끔 화면에 로딩 중 표시가 안 뜨는 경우가 있음")
                 notifyDataSetChanged()
-                Thread.sleep(200)
             }
 
             private fun inCompletedSchedule() = ScheduleResponse(
@@ -112,18 +110,23 @@ class MyScheduleAdapter(val datas: MutableList<ScheduleResponse>): RecyclerView.
         })
     }
 
-    fun addAndRefreshMySchedule(selectedPlaces: Array<Parcelable>) {
+    fun addAndRefreshMySchedule(scheduleName: String, selectedPlaces: Array<Parcelable>) {
         refreshMySchedule(false)
 
         val retrofit = createDefaultRetrofit(ScheduleApi.BASE_URL)
         val api = retrofit.create(ScheduleApi::class.java)
         val scheduleRequest = CreateScheduleRequest(selectedPlaces.map { it as LocationDto })
+        scheduleRequest.name = scheduleName
         val call = api.createSchedule(TokenManager.token, scheduleRequest)
 
 
         call.enqueue(object : retrofit2.Callback<Unit>{
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                refreshMySchedule()
+                Intent(binding.root.context, ActivityMain::class.java).apply {
+                    putExtra("FragmentName", "mySchedule")
+                    parentActivity.finish()
+                    binding.root.context.startActivity(this)
+                }
             }
 
             override fun onFailure(call: Call<Unit>, t: Throwable) {

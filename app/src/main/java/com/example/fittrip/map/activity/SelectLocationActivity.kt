@@ -23,13 +23,16 @@ import net.daum.mf.map.api.MapView.POIItemEventListener
 
 class SelectLocationActivity : AppCompatActivity(),
     POIItemEventListener, MapViewEventListener {
+    companion object{
+        var selectedPlaces = mutableListOf<LocationDto>()
+    }
     lateinit var binding: ActivitySelectLocationBinding
     lateinit var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     lateinit var mapViewCommander: MapViewCommander
     lateinit var mapView: MapView
 
-    private val selectedPlaces = mutableListOf<LocationDto>()
+
 
     lateinit var scheduleName: String
 
@@ -79,21 +82,23 @@ class SelectLocationActivity : AppCompatActivity(),
         menuInflater.inflate(R.menu.select_location, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.create_schedule -> {
-                Toast.makeText(this, "일정 생성", Toast.LENGTH_SHORT).show()
-
-                val intent = Intent(this, ActivityMain::class.java)
-                intent.putExtra("scheduleName", scheduleName)
-                intent.putExtra("selectedPlaces", selectedPlaces.toTypedArray())
-                finish()
-                startActivity(intent)
+                if (selectedPlaces.size == 1) {
+                    Toast.makeText(this, "일정은 2개 이상 생성해주세요", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "일정 생성", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, ActivityMain::class.java)
+                    intent.putExtra("scheduleName", scheduleName)
+                    intent.putExtra("selectedPlaces", selectedPlaces.toTypedArray())
+                    finish()
+                    startActivity(intent)
 
 //                val intent = Intent(this, MyScheduleActivity::class.java)
 //                intent.putExtra("selectedPlaces", selectedPlaces.toTypedArray())
 //                startActivity(intent)
+                }
             }
         }
         return super.onOptionsItemSelected(item)
@@ -103,6 +108,10 @@ class SelectLocationActivity : AppCompatActivity(),
      * POIItemEventListener
      */
     override fun onPOIItemSelected(p0: MapView?, p1: MapPOIItem?) {
+        if (selectedPlaces.size >= 5) {
+            Toast.makeText(this, "관광지는 5개까지 선택 가능합니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
         val latitude = p1?.mapPoint?.mapPointGeoCoord?.longitude
         val longitude = p1?.mapPoint?.mapPointGeoCoord?.latitude
         val name = p1?.itemName
@@ -165,9 +174,6 @@ class SelectLocationActivity : AppCompatActivity(),
     }
 
     override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {
-        Toast.makeText(this, "onMapViewMoveFinished", Toast.LENGTH_SHORT).show()
-        Log.d("activity_select_loc", "ddd")
-
         val y = p1?.mapPointGeoCoord?.latitude
         val x = p1?.mapPointGeoCoord?.longitude
 

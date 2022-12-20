@@ -13,6 +13,7 @@
         android:padding="10dp"
         android:text="Test1"
         android:textSize="24dp"
+        android:textStyle="bold"
         />
 
     <androidx.appcompat.widget.AppCompatButton

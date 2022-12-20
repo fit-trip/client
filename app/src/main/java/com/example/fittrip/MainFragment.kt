@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import com.example.fittrip.databinding.FragmentMainBinding
+import com.example.fittrip.map.activity.SelectLocationActivity
 
 
 class MainFragment : Fragment(), View.OnClickListener {
@@ -34,6 +34,7 @@ class MainFragment : Fragment(), View.OnClickListener {
                 val title = binding.editScheduleName.text.toString()
 
                 Intent(activity, SearchActivity::class.java).apply {
+                    SelectLocationActivity.selectedPlaces.clear()
                     putExtra("scheduleName", title)
                     startActivity(this)
                 }

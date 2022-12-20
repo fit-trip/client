@@ -15,9 +15,11 @@ import java.util.*
 class MapViewCommander(private val mapView: MapView) {
     companion object{
         val listedMarkerId: List<Int> = listOf(
-            R.drawable.one_150,
-            R.drawable.two_150,
-            R.drawable.three_150
+            R.drawable.one_64,
+            R.drawable.two_64,
+            R.drawable.three_64,
+            R.drawable.four_64,
+            R.drawable.five_64
         )
     }
 
@@ -43,7 +45,7 @@ class MapViewCommander(private val mapView: MapView) {
 
     fun addListedMarker(marker: List<Marker>) {
         mapView.removeAllPOIItems()
-        if (marker.size > 3) {
+        if (marker.size > 5) {
             //TODO("Marker 갯수 늘리기")
             return
         }
@@ -69,34 +71,35 @@ class MapViewCommander(private val mapView: MapView) {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val api = retrofit.create(KaKaoPlaceApi::class.java)
-        val call = api.getPlace("KakaoAK ${KaKaoPlaceApi.REST_API_KEY}", "$x", "$y", 300)
+        for (s in listOf("FD6", "CE7", "SW8", "AT4")) {
+            val call = api.getPlace("KakaoAK ${KaKaoPlaceApi.REST_API_KEY}", "$x", "$y", 300, s)
+            call.enqueue(object : Callback<KaKaoPlaceResponse> {
+                override fun onResponse(
+                    call: Call<KaKaoPlaceResponse>,
+                    response: Response<KaKaoPlaceResponse>
+                ) {
+                    Log.d("psh", "${response.body()}")
 
-        call.enqueue(object : Callback<KaKaoPlaceResponse> {
-            override fun onResponse(
-                call: Call<KaKaoPlaceResponse>,
-                response: Response<KaKaoPlaceResponse>
-            ) {
-                Log.d("psh", "${response.body()}")
+                    val placeList = response.body()?.documents
+                    val markers = ArrayList<Marker>();
 
-                val placeList = response.body()?.documents
-                val markers = ArrayList<Marker>();
+                    placeList?.forEach {
+                        val marker = Marker(
+                            it.place_name,
+                            it.x.toDouble(),
+                            it.y.toDouble(),
+                            Objects.hash("${it.x}${it.y}")
+                        )
+                        markers.add(marker)
+                    }
 
-                placeList?.forEach {
-                    val marker = Marker(
-                        it.place_name,
-                        it.x.toDouble(),
-                        it.y.toDouble(),
-                        Objects.hash("${it.x}${it.y}")
-                    )
-                    markers.add(marker)
+                    addMarker(markers)
                 }
-
-                addMarker(markers)
-            }
-            override fun onFailure(call: Call<KaKaoPlaceResponse>, t: Throwable) {
-                Log.d("psh", "onFailure")
-            }
-        })
+                override fun onFailure(call: Call<KaKaoPlaceResponse>, t: Throwable) {
+                    Log.d("psh", "onFailure")
+                }
+            })
+        }
     }
 
     data class Marker(val name: String, val x: Double, val y: Double, val tag: Int)
