@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.widget.SearchView
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fittrip.databinding.ActivitySearchBinding
@@ -42,7 +43,7 @@ class SearchActivity : AppCompatActivity() {
                 call: retrofit2.Call<NaverPlaceResponse>,
                 response: retrofit2.Response<NaverPlaceResponse>
             ) {
-                Log.d("SearchActivity", "response: ${response.body()}")
+                Log.d("ryu ", "response: ${response.body()}")
 
                 val placeList = response.body()?.items
 
@@ -58,6 +59,9 @@ class SearchActivity : AppCompatActivity() {
                     katec = GeoTrans.convert(GeoTrans.KATEC, GeoTrans.GEO, katec)
                     result[i].latitude = katec.y
                     result[i].longitude = katec.x
+
+                    result[i].title = HtmlCompat.fromHtml(result[i].title,
+                        HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
                 }
 
                 // result를 SearchActivity의 목록에 출력

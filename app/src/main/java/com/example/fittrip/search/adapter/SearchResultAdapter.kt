@@ -22,8 +22,10 @@ class SearchResultAdapter(private val datas: MutableList<SearchResult>): Recycle
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         binding = (holder as SearchResultViewHolder).binding
         binding.textLocationName.text = datas[position].title
-        binding.positionLat.text = datas[position].latitude.toString()
-        binding.positionLng.text = datas[position].longitude.toString()
+//        binding.positionLat.text = datas[position].latitude.toString()
+//        binding.positionLng.text = datas[position].longitude.toString()
+        binding.positionCategory.text = datas[position].category
+        binding.positionAddress.text = datas[position].roadAddress
 
         binding.itemScheduleNameRoot.setOnClickListener {
             Log.d("ryu", "datas[position].title: ${datas[position].title}")
